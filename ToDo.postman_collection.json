@@ -1,0 +1,386 @@
+{
+	"info": {
+		"_postman_id": "e26f8778-9d6d-44ac-9328-99f384c1a7e8",
+		"name": "ToDo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16371441",
+		"_collection_link": "https://bold-rocket-575644.postman.co/workspace/StudentList~948d12e4-c06b-4d97-af14-6612aeaff91c/collection/16371441-e26f8778-9d6d-44ac-9328-99f384c1a7e8?action=share&source=collection_link&creator=16371441"
+	},
+	"item": [
+		{
+			"name": "Login Registration",
+			"item": [
+				{
+					"name": "CreateProfile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"FirstName\":\"Partho\",\r\n    \"LastName\":\"Das\",\r\n    \"EmailAddress\":\"partho@gmail.com\",\r\n    \"MobileNumber\":\"01701457038\",\r\n    \"City\":\"Dhaka\",\r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/CreateProfile",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"CreateProfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserLogin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/UserLogin",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"UserLogin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Profile",
+			"item": [
+				{
+					"name": "SelectProfile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}/SelectProfile",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"SelectProfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProfile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/UserLogin",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"UserLogin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ToDo List",
+			"item": [
+				{
+					"name": "CreateToDo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/CreateToDo",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"CreateToDo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SelectToDo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/SelectToDo",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"SelectToDo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateToDo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/UpdateToDo",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"UpdateToDo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateStatusToDo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/UpdateStatusToDo",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"UpdateStatusToDo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SelectToDoByStatus",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/SelectToDoByStatus",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"SelectToDoByStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SelectToDoByDate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/SelectToDoByDate",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"SelectToDoByDate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveToDo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/RemoveToDo",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"RemoveToDo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:5000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTY4MzE4NDIsImRhdGEiOnsiX2lkIjoiNjUyMmVhNjQzNGFiMWRlM2RlOTA1ZmNjIiwiRmlyc3ROYW1lIjoiTGl0b24iLCJMYXN0TmFtZSI6IkRhcyIsIkVtYWlsQWRkcmVzcyI6ImxpdG9uQGdtYWlsLmNvbSIsIk1vYmlsZU51bWJlciI6IjAxNzAxNDUwMzgxIiwiQ2l0eSI6IkNoaXR0YWdvbmciLCJVc2VyTmFtZSI6ImxpdG9uIiwiUGFzc3dvcmQiOiIxMjM0In0sImlhdCI6MTY5NjgyODI0Mn0.HfZl9zQAGe14m9juogLSkkxWZ_wocHyid8LDweEp9XU",
+			"type": "string"
+		}
+	]
+}
