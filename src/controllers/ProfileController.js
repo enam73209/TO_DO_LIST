@@ -1,6 +1,8 @@
 const ProfileModel = require('../models/ProfileModel');
+const OTPModel = require('../models/OTPModel');
 const jwt = require('jsonwebtoken');
 const {request} = require("express");
+const SendEmailUtility = require('../utility/SendEmailUtility');
 exports.CreateProfile=async (req,res)=>{
     let reqBody = req.body;
     try{
@@ -67,5 +69,79 @@ exports.UpdateProfile=async (req,res)=>{
         }
     }catch (e){
             res.status(400).json({status:"success",data:e.toString()});
+    }
+}
+
+exports.RecoverVerifyEmail=async (req,res)=>{
+    let email = req.params.email;
+    let OTPCode = Math.floor(100000 + Math.random() * 900000);
+    let EmailText="Your Verification Code is ="+OTPCode
+    let EmailSubject="Task manager verification code"
+
+    let result= await ProfileModel.find({EmailAddress:email}).count();
+    if(result===1){
+        // Verification Email
+        await SendEmailUtility(email,EmailText,EmailSubject);
+        await OTPModel.create({email:email,otp:OTPCode})
+        res.status(200).json({status:"success",data:"6 Digit Verification Code has been send"})
+
+    }
+    else{
+        res.status(200).json({status:"fail",data:"No User Found"})
+    }
+
+}
+exports.VerifyOTP = async (req,res)=>{
+    let email =req.body['EmailAddress'];
+    let OTPCode =req.body['otp'] ;
+    let status =0;
+    let UpdateStatus = 1;
+     try{
+         let CheckingExpiry = await OTPModel.find({email:email,otp:OTPCode,status:status});
+         let CreatedAt = CheckingExpiry[0].createdAt;
+         const CurrentTime = new Date();
+         const timeDifferenceMs = CurrentTime - CreatedAt;
+         const otpExpirationTimeMs = 5 * 60 * 1000; //5 min
+         if(timeDifferenceMs <= otpExpirationTimeMs){
+             let result = await OTPModel.find({email:email,otp:OTPCode,status:status}).count();
+             if(result===1){
+                 await  OTPModel.updateOne({email:email,otp:OTPCode,status:status},{status:UpdateStatus});
+                 res.status(200).json({status:"success",data:"Verification successfully completed"});
+             }
+             else{
+                 res.status(200).json({status:"Fail",data:"Invalid Verification"});
+             }
+         }
+         else{
+             res.status(200).json({status:"Fail",data:"OTP has been expired"});
+         }
+
+     }catch (e) {
+         res.status(400).json({status:"Fail",data:"Invalid Verification"});
+     }
+}
+
+exports.UpdatePassword = async (req,res)=>{
+    let email = req.body['EmailAddress'];
+    let OTPCode=req.body['otp'];
+    let NewPassword=req.body['Password'];
+    let status = 1;
+    try{
+        let result = await OTPModel.find({email:email,otp:OTPCode,status:status}).count();
+        if(result ===1){
+            let Updated_Password=await ProfileModel.updateOne({EmailAddress:email},{
+                Password:NewPassword});
+            if(Updated_Password){
+                res.status(200).json({status:"success",data:"Password update success"});
+            }
+            else{
+                res.status(200).json({status:"fail",data:"Password update failed"});
+            }
+        }
+        else{
+            res.status(400).json({status:"fail",data:"Invalid verification"});
+        }
+    }catch (e) {
+            res.status(400).json({status:"fail",data:e.toString()});
     }
 }
