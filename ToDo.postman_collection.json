@@ -2,9 +2,10 @@
 	"info": {
 		"_postman_id": "e26f8778-9d6d-44ac-9328-99f384c1a7e8",
 		"name": "ToDo",
+		"description": "This is a simple ToDo list API project developed by Md. Enmaul Haque.\n\nTechnologies:\n\n1. Express Js\n    \n2. Mongoose",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "16371441",
-		"_collection_link": "https://bold-rocket-575644.postman.co/workspace/StudentList~948d12e4-c06b-4d97-af14-6612aeaff91c/collection/16371441-e26f8778-9d6d-44ac-9328-99f384c1a7e8?action=share&source=collection_link&creator=16371441"
+		"_collection_link": "https://bold-rocket-575644.postman.co/workspace/948d12e4-c06b-4d97-af14-6612aeaff91c/collection/16371441-e26f8778-9d6d-44ac-9328-99f384c1a7e8?action=share&source=collection_link&creator=16371441"
 	},
 	"item": [
 		{
@@ -17,7 +18,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"FirstName\":\"Partho\",\r\n    \"LastName\":\"Das\",\r\n    \"EmailAddress\":\"partho@gmail.com\",\r\n    \"MobileNumber\":\"01701457038\",\r\n    \"City\":\"Dhaka\",\r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"raw": "{\r\n    \"FirstName\":\"Liton\",\r\n    \"LastName\":\"Das\",\r\n    \"EmailAddress\":\"liton@gmail.com\",\r\n    \"MobileNumber\":\"01701457121\",\r\n    \"City\":\"Dhaka\",\r\n    \"UserName\":\"liton\",\r\n    \"Password\":\"1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -32,7 +33,8 @@
 							"path": [
 								"CreateProfile"
 							]
-						}
+						},
+						"description": "User Registration by creating a user profile"
 					},
 					"response": []
 				},
@@ -43,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"raw": "{\r\n    \r\n    \"UserName\":\"liton\",\r\n    \"Password\":\"1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -58,11 +60,98 @@
 							"path": [
 								"UserLogin"
 							]
-						}
+						},
+						"description": "User Login by JWT token creation"
+					},
+					"response": []
+				},
+				{
+					"name": "VerifyOTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"EmailAddress\":\"liton\",\r\n    \"otp\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/VerifyOTP",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"VerifyOTP"
+							]
+						},
+						"description": "User Login by JWT token creation"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePassword",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"EmailAddress\":\"liton\",\r\n    \"otp\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/VerifyOTP",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"VerifyOTP"
+							]
+						},
+						"description": "User Login by JWT token creation"
+					},
+					"response": []
+				},
+				{
+					"name": "RecoverVerifyEmail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"UserName\":\"liton\",\r\n    \"Password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/RecoverVerifyEmail/mh7869134@gmail.com",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"RecoverVerifyEmail",
+								"mh7869134@gmail.com"
+							]
+						},
+						"description": "User Login by JWT token creation"
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Features:\n\n1. User Registration\n2. User Login\n    \n3. OTP Verification by Email\n    \n4. Password reset with OTP verification"
 		},
 		{
 			"name": "User Profile",
@@ -86,7 +175,8 @@
 							"path": [
 								"SelectProfile"
 							]
-						}
+						},
+						"description": "To get Logged in User profile details"
 					},
 					"response": []
 				},
@@ -94,10 +184,16 @@
 					"name": "UpdateProfile",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"raw": "{\r\n   \"FirstName\": \"Liton\",\r\n    \"LastName\": \"Das\",\r\n    \"EmailAddress\": \"liton@gmail.com\",\r\n    \"MobileNumber\": \"01701450381\",\r\n    \"City\": \"Chittagong\",\r\n    \"UserName\": \"liton\",\r\n    \"Password\": \"1234\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -105,18 +201,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/UserLogin",
+							"raw": "{{BASE_URL}}/UpdateProfile",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
-								"UserLogin"
+								"UpdateProfile"
 							]
-						}
+						},
+						"description": "Logged in user profile update"
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Features:\n\n1. Logged in User Information\n    \n2. Update logged in User Profile"
 		},
 		{
 			"name": "ToDo List",
@@ -134,7 +232,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"raw": "{\r\n    \r\n    \"TodoSubject\":\"Design\",\r\n    \"TodoDescription\":\"I will complete a User Panel design\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -149,15 +247,13 @@
 							"path": [
 								"CreateToDo"
 							]
-						}
+						},
+						"description": "creating a todo in the Todo list"
 					},
 					"response": []
 				},
 				{
 					"name": "SelectToDo",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -167,15 +263,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "{{BASE_URL}}/SelectToDo",
 							"host": [
@@ -184,7 +271,8 @@
 							"path": [
 								"SelectToDo"
 							]
-						}
+						},
+						"description": "Select all Todo created by the todo creator"
 					},
 					"response": []
 				},
@@ -201,7 +289,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"raw": "{\r\n    \r\n     \"TodoSubject\":\"User Management System\",\r\n    \"TodoDescription\":\"I will complete a User Panel System design\",\r\n    \"_id\":\"6523705cd5c5fcb2790917a4\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -216,7 +304,8 @@
 							"path": [
 								"UpdateToDo"
 							]
-						}
+						},
+						"description": "Updating a specific Todo"
 					},
 					"response": []
 				},
@@ -233,7 +322,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"raw": "{\r\n    \r\n     \"TodoStatus\":\"WIP\",\r\n    \"_id\":\"65237ca794f253b8b9ba17d7\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -248,7 +337,8 @@
 							"path": [
 								"UpdateStatusToDo"
 							]
-						}
+						},
+						"description": "Updating a specific Todao status"
 					},
 					"response": []
 				},
@@ -265,7 +355,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"raw": "{ \r\n   \"TodoStatus\":\"New\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -280,7 +370,8 @@
 							"path": [
 								"SelectToDoByStatus"
 							]
-						}
+						},
+						"description": "Filtering Todo by Status"
 					},
 					"response": []
 				},
@@ -297,7 +388,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"raw": "{\r\n    \r\n    \"FormDate\":\"2023-10-08\",\r\n    \"ToDate\":\"2023-10-09\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -312,7 +403,8 @@
 							"path": [
 								"SelectToDoByDate"
 							]
-						}
+						},
+						"description": "Filteing Todo by creating date"
 					},
 					"response": []
 				},
@@ -329,7 +421,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n    \"UserName\":\"partho\",\r\n    \"Password\":\"1234\"\r\n}",
+							"raw": "{\r\n  \r\n    \"_id\":\"65237b4794f253b8b9ba17cf\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -344,11 +436,13 @@
 							"path": [
 								"RemoveToDo"
 							]
-						}
+						},
+						"description": "remove a specific todo"
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Features:\n\n1. Todo Creation\n    \n2. Select all todo\n    \n3. Update a selected todo\n    \n4. Update status of a selected todo\n    \n5. filtering todo by status\n    \n6. filtering todo by date\n    \n7. remove a selected todo"
 		}
 	],
 	"event": [
